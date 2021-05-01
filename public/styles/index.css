@@ -39,6 +39,12 @@ h1{
 header select{
     position: absolute;
     right: 0;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border: none;
+}
+header select:focus-visible{
+    outline: none;
 }
 
 main{
@@ -78,7 +84,7 @@ main{
     background: transparent;
 }
 
-#btn-show-finish{
+.sortButtons button:last-child{
     flex: 1;
     margin-left: 6rem;
     margin-right: 0;
