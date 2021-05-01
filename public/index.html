@@ -1,81 +1,103 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="scripts/index.js" type="module"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>Note App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+    <script src="scripts/index.js" type="module"></script>
 
-  <link rel="stylesheet" href="styles/index.css">
-</head>
-<body>
-<main>
-  <div class="headline">
-    <button class="button" id="btnNew">Create new Note</button>
-    <select name="colorStyle" id="colorStyle">
-      <option value="white-mode">White Mode</option>
-      <option value="dark-mode">Dark Mode</option>
-    </select>
-  </div>
-
-  <div class="sortButtons">
-    <button class="button" id="btnSortFinish">By finish date</button>
-    <button class="button" id="btnSortCreate">By create date</button>
-    <button class="button" id="btnSortImportance">By importance</button>
-    <button class="button" id="btnShowFinish">Show finished</button>
-  </div>
-
-  <div id="notes">
-    <div class="note">
-      <div class="info">
-        <h3>Nächster Mittwoch</h3>
-        <div class="status">
-            <input type="checkbox">
-          <p>Finished [Today]</p>
-        </div>
+    <link rel="stylesheet" href="styles/index.css">
+  </head>
+  <body>
+    <header>
+      <h1>Note App</h1>
+      <label for="color-style">
+        <select name="color-style" id="color-style">
+          <option value="white-mode">White Mode</option>
+          <option value="dark-mode">Dark Mode</option>
+        </select>
+      </label>
+    </header>
+    <main>
+      <div class="headline">
+        <button class="buttons" id="btn-new-note">Create new Note</button>
       </div>
-        <div class="noteBody">
-          <div class="titleBar">
-            <h3 id="noteTitle">CAS FEE Selbststudium</h3>
+
+      <div class="notes">
+        <div class="sortButtons">
+          <button class="buttons" id="btn-sort-finish">By finish date</button>
+          <button class="buttons" id="btn-sort-create">By create date</button>
+          <button class="buttons" id="btn-sort-importance">By importance</button>
+          <button class="buttons" id="btn-show-finish">Show finished</button>
+        </div>
+        <div class="note">
+          <div class="info">
+            <h3>Nächster Mittwoch</h3>
+            <div class="status">
+              <label>
+                <input type="checkbox">
+                Finished [Today]
+              </label>
+            </div>
           </div>
-          <textarea id="noteDesc">HTML für NoteApp erstellen. CSS erstellen dür die Note App [...]</textarea>
+            <div class="noteBody">
+              <div class="titleBar">
+                <h3 class="note-title">CAS FEE Selbststudium</h3>
+              </div>
+              <label>
+                <textarea class="note-desc">HTML für NoteApp erstellen. CSS erstellen dür die Note App [...]</textarea>
+              </label>
+            </div>
+          <div class="edit">
+            <button class="buttons btn-edit-note">Edit</button>
+          </div>
         </div>
-        <button class="button" id="btnEditNote">Edit</button>
-    </div>
-    <div class="note">
-      <div class="info">
-        <h3>Heute</h3>
-        <div class="status">
-          <input type="checkbox">
-          <p>Finished [Today]</p>
+        <div class="note">
+          <div class="info">
+            <h3>Heute</h3>
+            <div class="status">
+              <label>
+                <input type="checkbox">
+                Finished [Today]
+              </label>
+            </div>
+          </div>
+          <div class="noteBody">
+            <div class="titleBar">
+              <h3 class="note-title">MaMiMö</h3>
+            </div>
+            <label>
+              <textarea class="note-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
+            </label>
+          </div>
+          <div class="edit">
+            <button class="buttons btn-edit-note">Edit</button>
+          </div>
         </div>
-      </div>
-      <div class="noteBody">
-        <div class="titleBar">
-          <h3 id="noteTitle">MaMiMö</h3>
+        <div class="note">
+          <div class="info">
+            <h3>Irgendwann</h3>
+            <div class="status">
+              <label>
+                <input type="checkbox">
+                Finished [Today]
+              </label>
+            </div>
+          </div>
+          <div class="noteBody">
+            <div class="titleBar">
+              <h3 class="note-title">PillaPallaPuu</h3>
+            </div>
+            <label>
+              <textarea class="note-desc">asdfjklsadfij asdlfij adslfi asdlifjiejlfifj lasif alifjef li</textarea>
+            </label>
+          </div>
+          <div class="edit">
+            <button class="buttons btn-edit-note">Edit</button>
+          </div>
         </div>
-        <textarea id="noteDesc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
-      </div>
-      <button class="button" id="btnEditNote">Edit</button>
-    </div>
-    <div class="note">
-      <div class="info">
-        <h3>Irgendwann</h3>
-        <div class="status">
-          <input type="checkbox">
-          <p>Finished [Today]</p>
-        </div>
-      </div>
-      <div class="noteBody">
-        <div class="titleBar">
-          <h3 id="noteTitle">PillaPallaPuu</h3>
-        </div>
-        <textarea id="noteDesc">asdfjklsadfij asdlfij adslfi asdlifjiejlfifj lasif alifjef li</textarea>
-      </div>
-      <button class="button" id="btnEditNote">Edit</button>
-    </div>
 
-  </div>
-</main>
-</body>
+      </div>
+    </main>
+  </body>
 </html>

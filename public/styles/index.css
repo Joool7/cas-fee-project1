@@ -4,47 +4,103 @@
     padding: 0;
 }
 
-.button{
-    padding: 1rem;
-    background-color: dimgray;
-    border: none;
+:root{
+    --primary-color: #f8f8f8;
+    --secondary-color: #212121;
+    --third-color: rgba(230, 230, 230, 0.5);
+
+}
+
+.dark-mode{
+    --primary-color: #212121;
+    --secondary-color: #f8f8f8;
+    --third-color: rgba(68, 68, 68, 0.5);
+}
+
+body{
+    font-family: Arial, sans-serif;
+    color: var(--secondary-color);
+    background: var(--primary-color);
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    padding-top: 1rem;
+    margin: 0 1rem 1rem 1rem;
+    position: relative;
+}
+
+h1{
+    font-size: 4rem;
+    color: var(--secondary-color);
+}
+
+header select{
+    position: absolute;
+    right: 0;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.buttons{
+    cursor: pointer;
+    border: 2px solid var(--secondary-color);
     border-radius: 1rem;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .headline{
-    position: relative;
-    margin: 1rem;
+    margin: 4rem 1rem 2rem 1rem;
 }
 
-.headline select{
-    position: absolute;
-    right: 0rem;
+.headline button{
+    padding: 1rem;
 }
 
 .sortButtons{
     display: flex;
+    margin: 0 1rem 0 1rem;
     flex: 1;
 }
 
 .sortButtons button{
     flex: 2;
-    margin: 0rem 1rem 0rem 1rem;
-}
-#btnShowFinish{
-    flex: 1;
-    margin-left: 6rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background: transparent;
 }
 
-#notes{
-    background: darkgray;
-    margin: 1rem;
+#btn-show-finish{
+    flex: 1;
+    margin-left: 6rem;
+    margin-right: 0;
+}
+
+.notes{
+    margin: 0 1rem 0 1rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, rgba(var(--primary-color) 1), var(--primary-color) );
 }
 
 .note{
     height: 10rem;
-    padding: 1rem 0rem 1rem 0rem;
+    margin: 0 1rem 1rem 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: row;
+    border-radius: 0.5rem;
+    background: linear-gradient(to bottom right, var(--third-color), var(--primary-color) );
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2);
 }
 
 .info{
@@ -62,8 +118,14 @@
     display: flex;
 }
 
-.status p{
-    margin-left: 1rem;
+.status label{
+    display: flex;
+    align-items: center;
+}
+
+.status input{
+    flex: none;
+    margin-right: 1rem;
 }
 
 .noteBody{
@@ -76,12 +138,32 @@
     flex: 1;
 }
 
-.noteBody textarea{
+.noteBody label{
     flex: 3;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-#btnEditNote{
+.note-desc{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    font-family: inherit;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+.edit{
     flex: 1;
     margin-left: 1rem;
+    position: relative;
+}
+
+.edit button{
+    position: absolute;
+    height: 4rem;
+    width: 100%;
+    bottom: 0;
 }
