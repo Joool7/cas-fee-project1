@@ -11,13 +11,14 @@
   <body>
     <header>
       <h1>Note App</h1>
-      <label for="color-style">
+      <label for="color-style" class="tool-container">
         <select name="color-style" id="color-style">
           <option value="white-mode">White Mode</option>
           <option value="dark-mode">Dark Mode</option>
         </select>
       </label>
     </header>
+
     <main>
       <div class="headline">
         <button class="buttons" id="btn-new-note">Create new Note</button>
@@ -30,6 +31,7 @@
           <button class="buttons" id="btn-sort-importance">By importance</button>
           <button class="buttons" id="btn-show-finish">Show finished</button>
         </div>
+
         <div class="note">
           <div class="info">
             <h3>Nächster Mittwoch</h3>
@@ -40,58 +42,83 @@
               </label>
             </div>
           </div>
+
             <div class="noteBody">
               <div class="titleBar">
                 <h3 class="note-title">CAS FEE Selbststudium</h3>
+                <div class="prio">
+                  <h2>!</h2>
+                  <h2>!</h2>
+                  <h2>!</h2>
+                  <h2>!</h2>
+                  <h2>!</h2>
+                </div>
               </div>
               <label>
                 <textarea class="note-desc">HTML für NoteApp erstellen. CSS erstellen dür die Note App [...]</textarea>
               </label>
             </div>
+
           <div class="edit">
             <button class="buttons btn-edit-note">Edit</button>
           </div>
         </div>
+
         <div class="note">
           <div class="info">
             <h3>Heute</h3>
             <div class="status">
               <label>
                 <input type="checkbox">
-                Finished [Today]
+                Finished
               </label>
             </div>
           </div>
+
           <div class="noteBody">
             <div class="titleBar">
               <h3 class="note-title">MaMiMö</h3>
+              <div class="prio">
+                <h2>!</h2>
+              </div>
             </div>
+
             <label>
               <textarea class="note-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
             </label>
           </div>
+
           <div class="edit">
             <button class="buttons btn-edit-note">Edit</button>
           </div>
         </div>
+
         <div class="note">
           <div class="info">
             <h3>Irgendwann</h3>
             <div class="status">
               <label>
                 <input type="checkbox">
-                Finished [Today]
+                Finished
               </label>
             </div>
           </div>
+
           <div class="noteBody">
             <div class="titleBar">
               <h3 class="note-title">PillaPallaPuu</h3>
+              <div class="prio">
+                <h2>!</h2>
+                <h2>!</h2>
+                <h2>!</h2>
+              </div>
             </div>
+
             <label>
               <textarea class="note-desc">asdfjklsadfij asdlfij adslfi asdlifjiejlfifj lasif alifjef li</textarea>
             </label>
           </div>
+
           <div class="edit">
             <button class="buttons btn-edit-note">Edit</button>
           </div>
