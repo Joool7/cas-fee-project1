@@ -1,5 +1,5 @@
-const selector = document.getElementById("color-style");
+const selector = document.getElementById('color-style');
 
-selector.onchange = function(){
-    document.body.classList.toggle("dark-mode");
-}
+selector.onchange = function togglePageStyle() {
+    document.body.classList.toggle('dark-mode');
+};
