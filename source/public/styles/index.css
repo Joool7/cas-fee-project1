@@ -17,7 +17,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
     color: var(--secondary-color);
     background: var(--primary-color);
     height: 100vh;
@@ -31,7 +32,12 @@ header {
 
 h1 {
     font-size: 3rem;
+    font-weight: 700;
     color: var(--secondary-color);
+}
+
+h3 {
+    font-weight: 300;
 }
 
 header label {
@@ -55,6 +61,7 @@ main {
 }
 
 .buttons {
+    font-family: 'Roboto', sans-serif;
     cursor: pointer;
     border: 2px solid var(--secondary-color);
     border-radius: 1rem;
