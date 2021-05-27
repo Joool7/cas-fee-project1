@@ -13,12 +13,14 @@
   <body>
     <header>
       <h1>Note App</h1>
-      <label for="color-style" class="tool-container">
-        <select name="color-style" id="color-style">
-          <option value="white-mode">White Mode</option>
-          <option value="dark-mode">Dark Mode</option>
-        </select>
-      </label>
+      <div class="tool-container">
+        <label for="color-style">
+          <select name="color-style" id="color-style">
+            <option value="white-mode">White Mode</option>
+            <option value="dark-mode">Dark Mode</option>
+          </select>
+        </label>
+      </div>
     </header>
 
     <main>
@@ -27,106 +29,69 @@
       </div>
 
       <div class="notes">
-        <div class="sortButtons">
-          <button class="buttons" id="btn-sort-finish">By finish date</button>
-          <button class="buttons" id="btn-sort-create">By create date</button>
-          <button class="buttons" id="btn-sort-importance">By importance</button>
-          <button class="buttons" id="btn-show-finish">Show finished</button>
+        <div class="sort-buttons">
+          <button class="btn-sort-finish">By finish date</button>
+          <button class="btn-sort-create">By create date</button>
+          <button class="btn-sort-importance">By importance</button>
+          <button class="btn-show-finish">Show finished</button>
         </div>
 
         <div class="note">
-          <div class="info">
-            <h3>Nächster Mittwoch</h3>
-            <div class="status">
-              <label>
-                <input type="checkbox">
-                Finished [Today]
-              </label>
-            </div>
-          </div>
-
-            <div class="noteBody">
-              <div class="titleBar">
-                <h3 class="note-title">CAS FEE Selbststudium</h3>
-                <div class="prio">
-                  <h2>!</h2>
-                  <h2>!</h2>
-                  <h2>!</h2>
-                  <h2>!</h2>
-                  <h2>!</h2>
-                </div>
-              </div>
-              <label>
-                <textarea class="note-desc">HTML für NoteApp erstellen. CSS erstellen dür die Note App [...]</textarea>
-              </label>
-            </div>
-
-          <div class="edit">
-            <button class="buttons btn-edit-note">Edit</button>
-          </div>
-        </div>
-
-        <div class="note">
-          <div class="info">
-            <h3>Heute</h3>
-            <div class="status">
+            <h3 class="note-date">Heute</h3>
+            <div class="note-status">
               <label>
                 <input type="checkbox">
                 Finished
               </label>
             </div>
-          </div>
 
-          <div class="noteBody">
-            <div class="titleBar">
+          <div class="note-title-bar">
               <h3 class="note-title">MaMiMö</h3>
               <div class="prio">
                 <h2>!</h2>
               </div>
-            </div>
-
-            <label>
-              <textarea class="note-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
-            </label>
           </div>
 
-          <div class="edit">
-            <button class="buttons btn-edit-note">Edit</button>
+            <label class="note-content">
+              <textarea class="note-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
+            </label>
+
+          <div class="btn-note-edit">
+            <button class="btn-edit-note">Edit</button>
           </div>
         </div>
 
         <div class="note">
-          <div class="info">
-            <h3>Irgendwann</h3>
-            <div class="status">
-              <label>
-                <input type="checkbox">
-                Finished
-              </label>
-            </div>
-          </div>
-
-          <div class="noteBody">
-            <div class="titleBar">
-              <h3 class="note-title">PillaPallaPuu</h3>
-              <div class="prio">
-                <h2>!</h2>
-                <h2>!</h2>
-                <h2>!</h2>
-              </div>
-            </div>
-
+          <h3 class="note-date">Heute</h3>
+          <div class="note-status">
             <label>
-              <textarea class="note-desc">asdfjklsadfij asdlfij adslfi asdlifjiejlfifj lasif alifjef li</textarea>
+              <input type="checkbox">
+              Finished
             </label>
           </div>
 
-          <div class="edit">
-            <button class="buttons btn-edit-note">Edit</button>
+          <div class="note-title-bar">
+            <h3 class="note-title">MaMiMö</h3>
+            <div class="prio">
+              <h2>!</h2>
+            </div>
+          </div>
+
+          <label class="note-content">
+            <textarea class="note-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
+          </label>
+
+          <div class="btn-note-edit">
+            <button class="btn-edit-note">Edit</button>
           </div>
         </div>
 
-      </div>
+        </div>
     </main>
+    <div class="popup-container">
+      <div class="popup-note">
+
+      </div>
+    </div>
   </body>
 </html>
