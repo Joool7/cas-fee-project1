@@ -9,13 +9,14 @@
     <script src="scripts/index.js" type="module"></script>
 
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/popup.css">
   </head>
   <body>
     <header>
       <h1>Note App</h1>
       <div class="tool-container">
-        <label for="color-style">
-          <select name="color-style" id="color-style">
+        <label for="sel-color-style">
+          <select name="sel-color-style" id="sel-color-style">
             <option value="white-mode">White Mode</option>
             <option value="dark-mode">Dark Mode</option>
           </select>
@@ -89,8 +90,21 @@
         </div>
     </main>
     <div class="popup-container">
-      <div class="popup-note">
-
+      <div class="popup-new-note">
+        <h2>Neue Notiz</h2>
+        <form action="./save-data.php" class="input-field" method="POST">
+          <label for="title" class="label-title">Title</label>
+          <input type="text" name="title" id="title" class="new-note-title">
+          <label for="description" class="label-description">Notiz Inhalt</label>
+          <textarea type="text" name="description" id="description" class="new-note-description"></textarea>
+          <label for="importance" class="label-importance">Wichtigkeit</label>
+          <label for="date" class="label-date">Zu erledigen bis</label>
+          <input type="date"  name="date" id="date" class="new-note-date">
+          <button type="button" class="btn-note-create">Create new note</button>
+        </form>
+        <div class="close-pop-up">
+          <button id="btn-close-pop-up">Abbruch</button>
+        </div>
       </div>
     </div>
   </body>
