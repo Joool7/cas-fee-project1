@@ -20,8 +20,15 @@ class View{
     }
 
     renderDate(date) {
-        const actDate = new Date();
-        const daysBetween = Math.round((date - actDate) / (24 * 60 * 60 * 1000));
+        const actDate = new Date().setHours(0,0,0,0);
+        const bli = (date - actDate);
+        const blu = bli / (24*60*60*1000);
+        let daysBetween;
+        if(blu > 0){
+            daysBetween = Math.floor(blu);
+        } else{
+            daysBetween = Math.ceil(blu);
+        }
         if ((daysBetween < 1) && (daysBetween > -1)) {
             return 'Heute';
         }
@@ -31,14 +38,18 @@ class View{
                 return `In ${daysBetween} Tagen`;
             }
             if (daysBetween > 1) {
-                return `Am ${this.getDayOfWeek(daysBetween)}`;
+                return `Am ${this.getDayOfWeek(new Date(date).getDay())}`;
             } else {
                 return 'Morgen';
             }
         }
-        if (daysBetween <= -1){
-                // past
-                return `Termin verpasst seit ${daysBetween * -1} Tagen`;
+        if (daysBetween === -1){
+            // past
+            return `Termin fällig seit ${daysBetween * -1} Tag`;
+        }
+        if (daysBetween <= -2){
+            // past
+            return `Termin fällig seit ${daysBetween * -1} Tagen`;
         }
     }
 

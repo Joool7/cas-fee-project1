@@ -67,19 +67,23 @@
     width: 4rem;
     grid-area: importance;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    cursor: pointer;
 }
 
 .new-note-importance h1 {
     color: red;
     opacity: 0.2;
-    cursor: pointer;
 }
 
-.new-note-importance > h1:hover,
-.new-note-importance > h1:hover ~ h1 {
+.new-note-importance:hover h1,
+.new-note-importance .active {
     color: red;
     opacity: 1;
+}
+
+.new-note-importance h1:hover ~ h1 {
+    opacity: 0.2;
 }
 
 .label-date {

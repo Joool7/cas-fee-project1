@@ -3,6 +3,7 @@ const createNotesFragmentHtmlString = Handlebars.compile(document.getElementById
 const selColorStyle = document.querySelector('#sel-color-style');
 const btnNewNote = document.querySelector('#btn-new-note');
 const btnClosePopUp = document.querySelector('#btn-close-pop-up');
+const btnNewNoteCreate = document.querySelector('.btn-note-create');
 
 // Sort
 const btnSortFinish = document.querySelector('.btn-sort-finish');
@@ -19,6 +20,7 @@ function toggleColorStyle(){
 
 function openNewNotePopUp(){
     document.querySelector('.popup-container').style.display = 'flex';
+    initNewNote();
 }
 
 function closeNewNotePopUp(){
@@ -27,6 +29,11 @@ function closeNewNotePopUp(){
 
 selColorStyle.addEventListener('change', toggleColorStyle);
 btnNewNote.addEventListener('click', openNewNotePopUp);
+btnNewNoteCreate.addEventListener('click', () => {
+    noteService.addNote(newNoteTitle.value, newNoteDescription.value, newNoteSelImportance, newNoteDate.value, false);
+    view.update();
+    closeNewNotePopUp();
+});
 btnClosePopUp.addEventListener('click', closeNewNotePopUp);
 
 // Sort
