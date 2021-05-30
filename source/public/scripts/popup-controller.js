@@ -3,6 +3,7 @@ const newNoteDescription = document.querySelector('.new-note-description');
 const newNoteImportanceSelector = document.querySelector('.new-note-importance');
 const importanceView = [...newNoteImportanceSelector.querySelectorAll('h1')];
 const newNoteDate = document.querySelector('.new-note-date');
+const popUpContainer = document.querySelector('.popup-container');
 let newNoteSelImportance;
 
 function paintImportance(length, selection){
@@ -30,3 +31,5 @@ function bubbleClickEventHandler(event) {
 
 
 newNoteImportanceSelector.addEventListener('click', bubbleClickEventHandler);
+
+window.addEventListener('click', (event) => event.target === popUpContainer ? popUpContainer.style.display = 'none' : '');

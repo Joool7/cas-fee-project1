@@ -1,9 +1,9 @@
 class View{
-    update(){
-        if (noteService.notes.length === 0) {
+    update(noteServiceSort){
+        if (noteServiceSort.length === 0) {
         } else {
             noteList.innerHTML = '';
-            noteService.notes.forEach((note) => {
+            noteServiceSort.forEach((note) => {
                const tempTask = document.createElement('div');
                tempTask.className = 'note';
                tempTask.innerHTML = createNotesFragmentHtmlString({
@@ -21,13 +21,12 @@ class View{
 
     renderDate(date) {
         const actDate = new Date().setHours(0,0,0,0);
-        const bli = (date - actDate);
-        const blu = bli / (24*60*60*1000);
+        const daysBetweenRaw = (date - actDate) / (24 * 60 * 60 * 1000);
         let daysBetween;
-        if(blu > 0){
-            daysBetween = Math.floor(blu);
+        if(daysBetweenRaw > 0){
+            daysBetween = Math.floor(daysBetweenRaw);
         } else{
-            daysBetween = Math.ceil(blu);
+            daysBetween = Math.ceil(daysBetweenRaw);
         }
         if ((daysBetween < 1) && (daysBetween > -1)) {
             return 'Heute';
@@ -74,4 +73,4 @@ class View{
 }
 
 const view = new View();
-view.update();
+view.update(noteService.notes);

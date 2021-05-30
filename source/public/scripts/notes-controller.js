@@ -27,29 +27,41 @@ function closeNewNotePopUp(){
     document.querySelector('.popup-container').style.display = 'none';
 }
 
+function bubbleClickFinishNoteHandler(event) {
+    const inputNoteId = Number(event.target.dataset.noteId);
+    const tempNote = noteService.getNote(inputNoteId);
+    if(tempNote.finished === false){
+        tempNote.finished = true;
+    } else{
+        tempNote.finished = false;
+    }
+}
+
 selColorStyle.addEventListener('change', toggleColorStyle);
 btnNewNote.addEventListener('click', openNewNotePopUp);
 btnNewNoteCreate.addEventListener('click', () => {
     noteService.addNote(newNoteTitle.value, newNoteDescription.value, newNoteSelImportance, newNoteDate.value, false);
-    view.update();
+    view.update(noteService);
     closeNewNotePopUp();
 });
 btnClosePopUp.addEventListener('click', closeNewNotePopUp);
 
 // Sort
 btnSortFinish.addEventListener('click', () => {
-    noteService.sortFinish(noteService);
-    view.update();
+    const noteServiceSort = noteService.sortFinish(noteService);
+    view.update(noteServiceSort);
 });
 btnSortCreate.addEventListener('click', () => {
-    noteService.sortCreate(noteService);
-    view.update();
+    const noteServiceSort = noteService.sortCreate(noteService);
+    view.update(noteServiceSort);
 });
 btnSortImportance.addEventListener('click', () => {
-    noteService.sortImportance(noteService);
-    view.update();
+    const noteServiceSort = noteService.sortImportance(noteService);
+    view.update(noteServiceSort);
 });
 btnShowFinished.addEventListener('click', () => {
-    noteService.showFinished(noteService);
-    view.update();
+    const noteServiceSort = noteService.showFinished(noteService);
+    view.update(noteServiceSort);
 });
+
+noteList.addEventListener('click', bubbleClickFinishNoteHandler);

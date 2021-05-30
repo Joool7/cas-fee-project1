@@ -19,7 +19,7 @@
           <h3 class="note-date">{{dueDate}}</h3>
           <div class="note-status">
             <label>
-              <input type="checkbox" id="{{id}}" {{finished}}>
+              <input type="checkbox" data-note-id="{{id}}" data-note-finished="{{finished}}">
               Finished
             </label>
           </div>
@@ -61,7 +61,7 @@
       <div class="notes">
         <div class="sort-buttons">
           <h3>Sortieren nach:</h3>
-          <button class="btn-sort-finish">Abgabedatum</button>
+          <button class="btn-sort-finish">Fälligkeitsdatum</button>
           <button class="btn-sort-create">Erstelldatum</button>
           <button class="btn-sort-importance">Wichtigkeit</button>
           <button class="btn-show-finish">Zeige Abgeschlossene</button>
