@@ -6,10 +6,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
     <title>Note App</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-    <script src="scripts/index.js" type="module"></script>
+    <script src="scripts/notes-controller.js" defer></script>
+    <script src="scripts/note.js" defer></script>
+    <script src="scripts/note-service.js" defer></script>
+    <script src="scripts/view.js" defer></script>
 
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/popup.css">
+
+    <script id="note-template" type="text/x-handlebars-template">
+          <h3 class="note-date">{{dueDate}}</h3>
+          <div class="note-status">
+            <label>
+              <input type="checkbox" id="{{id}}" {{finished}}>
+              Finished
+            </label>
+          </div>
+
+          <div class="note-title-bar">
+            <h3 class="note-title">{{title}}</h3>
+            <div class="prio">
+              <h2>{{importance}}</h2>
+            </div>
+          </div>
+
+          <label class="note-content">
+            <textarea disabled class="note-text">{{content}}</textarea>
+          </label>
+
+          <div class="btn-note-edit">
+            <button class="btn-edit-note">Edit</button>
+          </div>
+    </script>
   </head>
   <body>
     <header>
@@ -31,12 +59,14 @@
 
       <div class="notes">
         <div class="sort-buttons">
+          <h3>Sort:</h3>
           <button class="btn-sort-finish">By finish date</button>
           <button class="btn-sort-create">By create date</button>
           <button class="btn-sort-importance">By importance</button>
           <button class="btn-show-finish">Show finished</button>
         </div>
 
+        <div class="notes-list">
         <div class="note">
             <h3 class="note-date">Heute</h3>
             <div class="note-status">
@@ -49,6 +79,7 @@
           <div class="note-title-bar">
               <h3 class="note-title">MaMiMö</h3>
               <div class="prio">
+                <h2>!</h2>
                 <h2>!</h2>
               </div>
           </div>
@@ -88,19 +119,27 @@
         </div>
 
         </div>
+      </div>
     </main>
     <div class="popup-container">
       <div class="popup-new-note">
         <h2>Neue Notiz</h2>
-        <form action="./save-data.php" class="input-field" method="POST">
+        <form action="./save-data.php" class="input-field" >
           <label for="title" class="label-title">Title</label>
           <input type="text" name="title" id="title" class="new-note-title">
           <label for="description" class="label-description">Notiz Inhalt</label>
           <textarea type="text" name="description" id="description" class="new-note-description"></textarea>
-          <label for="importance" class="label-importance">Wichtigkeit</label>
+          <p class="label-importance">Wichtigkeit</p>
+          <div class="new-note-importance">
+            <h1>!</h1>
+            <h1>!</h1>
+            <h1>!</h1>
+            <h1>!</h1>
+            <h1>!</h1>
+          </div>
           <label for="date" class="label-date">Zu erledigen bis</label>
           <input type="date"  name="date" id="date" class="new-note-date">
-          <button type="button" class="btn-note-create">Create new note</button>
+          <button type="submit" data-action="addNote"class="btn-note-create">Create new note</button>
         </form>
         <div class="close-pop-up">
           <button id="btn-close-pop-up">Abbruch</button>
