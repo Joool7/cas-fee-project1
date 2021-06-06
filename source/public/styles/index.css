@@ -59,8 +59,7 @@ main {
     align-content: space-between;
 }
 
-
-button {
+.btn {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
     border: 2px solid var(--secondary-color);
@@ -69,15 +68,25 @@ button {
     color: var(--secondary-color);
 }
 
+.btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.btn-active {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
 .headline {
     margin: 2rem 0 1rem 0;
 }
 
-.headline button {
+.headline .btn {
     padding: 1rem;
 }
 
-.btn-note-edit button {
+.btn-note-edit .btn {
     margin-top: auto;
     height: 4rem;
     width: 100%;
@@ -91,12 +100,12 @@ button {
     background: linear-gradient(to bottom right, rgba(var(--primary-color) 1), var(--primary-color));
 }
 
-.sort-buttons button {
+.sort-buttons .btn {
     height: 2rem;
     width: 10rem;
 }
 
-.sort-buttons button:last-child {
+.sort-buttons .btn:last-child {
     margin-left: 6rem;
     margin-right: 0;
 }
@@ -122,6 +131,11 @@ button {
     border-radius: 0.5rem;
     background: linear-gradient(to bottom right, var(--third-color), var(--primary-color));
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(100, 100, 100, 0.2), 0 0 0.3rem rgba(50, 50, 50, 0.1);
+}
+
+.empty-note {
+    padding: 4rem 0 4rem 1rem;
+    color: red;
 }
 
 .note-date {

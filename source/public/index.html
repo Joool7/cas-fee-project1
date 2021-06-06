@@ -19,7 +19,7 @@
           <h3 class="note-date">{{dueDate}}</h3>
           <div class="note-status">
             <label>
-              <input type="checkbox" data-note-id="{{id}}" data-note-finished="{{finished}}">
+              <input type="checkbox" data-note-id="{{id}}">
               Finished
             </label>
           </div>
@@ -36,7 +36,7 @@
           </label>
 
           <div class="btn-note-edit">
-            <button type="button" class="btn-edit-note" data-note-btn-id="{{id}}">Edit</button>
+            <button type="button" class="btn btn-edit-note" data-note-btn-id="{{id}}">Edit</button>
           </div>
     </script>
   </head>
@@ -45,7 +45,7 @@
       <h1>Notiz App</h1>
       <div class="tool-container">
         <label for="sel-color-style">
-          <select name="sel-color-style" id="sel-color-style">
+          <select name="sel-color-style" id="sel-color-style" data-drop-style>
             <option value="white-mode">Hell</option>
             <option value="dark-mode">Dunkel</option>
           </select>
@@ -55,45 +55,19 @@
 
     <main>
       <div class="headline">
-        <button class="buttons" id="btn-new-note">Neue Notiz</button>
+        <button class="btn" data-btn-new-note id="btn-new-note">Neue Notiz</button>
       </div>
 
       <div class="notes">
         <div class="sort-buttons">
           <h3>Sortieren nach:</h3>
-          <button class="btn-sort-finish">Fälligkeitsdatum</button>
-          <button class="btn-sort-create">Erstelldatum</button>
-          <button class="btn-sort-importance">Wichtigkeit</button>
-          <button class="btn-show-finish">Zeige Abgeschlossene</button>
+          <button class="btn sort btn-active" data-btn-sort-finish>Fälligkeitsdatum</button>
+          <button class="btn sort" data-btn-sort-create>Erstelldatum</button>
+          <button class="btn sort" data-btn-sort-importance>Wichtigkeit</button>
+          <button class="btn filter" data-btn-toggle-finish>Zeige Abgeschlossene</button>
         </div>
 
         <div class="notes-list">
-        <div class="note">
-            <h3 class="note-date">Heute</h3>
-            <div class="note-status">
-              <label>
-                <input type="checkbox">
-                Finished
-              </label>
-            </div>
-
-          <div class="note-title-bar">
-              <h3 class="note-title">MaMiMö</h3>
-              <div class="prio">
-                <h2>!</h2>
-                <h2>!</h2>
-              </div>
-          </div>
-
-            <label class="note-content">
-              <textarea disabled class="note-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
-            </label>
-
-          <div class="btn-note-edit">
-            <button class="btn-edit-note">Edit</button>
-          </div>
-        </div>
-
         </div>
       </div>
     </main>
@@ -115,10 +89,10 @@
           </div>
           <label for="date" class="label-date">Zu erledigen bis</label>
           <input type="date"  name="date" id="date" class="new-note-date">
-          <button type="button" class="btn-note-create">Speichern</button>
+          <button type="button" class="btn btn-note-create">Speichern</button>
         </form>
         <div class="close-pop-up">
-          <button id="btn-close-pop-up">Abbruch</button>
+          <button id="btn-close-pop-up" class="btn" data-btn-close-popup>Abbruch</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,11 @@
 class View{
     update(noteServiceSort){
-        if (noteServiceSort.length === 0) {
+        if (noteServiceSort.notes.length === 0) {
+            noteList.innerHTML = '';
+            const tempTask = document.createElement('div');
+            tempTask.className = 'empty-note';
+            tempTask.innerHTML = '<h3>Es sind keine Notizen anzeigbar.</h3>';
+            noteList.appendChild(tempTask);
         } else {
             noteList.innerHTML = '';
             noteServiceSort.notes.forEach((note) => {
@@ -11,7 +16,6 @@ class View{
                    title: note.title,
                    importance: Array(note.importance).fill('!').join(' '),
                    id: note.id,
-                   finished: note.finished,
                    content: note.content,
                });
                 noteList.appendChild(tempTask);
