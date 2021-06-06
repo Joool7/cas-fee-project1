@@ -43,6 +43,10 @@
 
 .new-note-title {
     grid-area: title;
+    padding: 0.3rem;
+    background: inherit;
+    color: inherit;
+    font: inherit;
 }
 
 .label-description {
@@ -54,7 +58,7 @@
     height: 10rem;
     padding: 0.3rem;
     resize: none;
-    font-family: inherit;
+    font: inherit;
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
@@ -92,6 +96,9 @@
 
 .new-note-date {
     grid-area: date;
+    background: inherit;
+    color: inherit;
+    font: inherit;
 }
 
 .btn-note-create {
@@ -104,7 +111,7 @@
     margin-top: auto;
 }
 
-.close-pop-up button{
+.close-pop-up .btn{
     height: 3rem;
     padding: 1rem;
 }
