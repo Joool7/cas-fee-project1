@@ -1,25 +1,30 @@
 class View{
+    constructor() {
+        this.createNotesFragmentHtmlString = Handlebars.compile(document.getElementById('note-template').innerHTML);
+        this.noteList = document.querySelector('.notes-list');
+    }
+
     update(noteServiceSort){
         if (noteServiceSort.notes.length === 0) {
-            noteList.innerHTML = '';
+            this.noteList.innerHTML = '';
             const tempTask = document.createElement('div');
             tempTask.className = 'empty-note';
             tempTask.innerHTML = '<h3>Es sind keine Notizen anzeigbar.</h3>';
-            noteList.appendChild(tempTask);
+            this.noteList.appendChild(tempTask);
         } else {
-            noteList.innerHTML = '';
+            this.noteList.innerHTML = '';
             noteServiceSort.notes.forEach((note) => {
                const tempTask = document.createElement('div');
                tempTask.className = 'note';
-               tempTask.innerHTML = createNotesFragmentHtmlString({
+               tempTask.innerHTML = this.createNotesFragmentHtmlString({
                    dueDate: this.renderDate(note.dueDate),
                    title: note.title,
                    importance: Array(note.importance).fill('!').join(' '),
                    id: note.id,
                    content: note.content,
                });
-                noteList.appendChild(tempTask);
-                if(note.finished === true){
+                this.noteList.appendChild(tempTask);
+                if (note.finished === true){
                     document.querySelector(`[data-note-id="${note.id}"]`).setAttribute('checked', '');
                 }
             });
@@ -27,12 +32,12 @@ class View{
     }
 
     renderDate(date) {
-        const actDate = new Date().setHours(0,0,0,0);
+        const actDate = new Date().setHours(0, 0, 0, 0);
         const daysBetweenRaw = (date - actDate) / (24 * 60 * 60 * 1000);
         let daysBetween;
-        if(daysBetweenRaw > 0){
+        if (daysBetweenRaw > 0){
             daysBetween = Math.floor(daysBetweenRaw);
-        } else{
+        } else {
             daysBetween = Math.ceil(daysBetweenRaw);
         }
         if ((daysBetween < 1) && (daysBetween > -1)) {
@@ -45,9 +50,8 @@ class View{
             }
             if (daysBetween > 1) {
                 return `Am ${this.getDayOfWeek(new Date(date).getDay())}`;
-            } else {
-                return 'Morgen';
             }
+                return 'Morgen';
         }
         if (daysBetween === -1){
             // past
@@ -79,5 +83,4 @@ class View{
     }
 }
 
-const view = new View();
-view.update(noteService);
+export const view = new View();

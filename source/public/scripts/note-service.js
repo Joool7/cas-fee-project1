@@ -1,4 +1,6 @@
-class NoteServices {
+import {Note} from './note.js';
+
+export class NoteServices {
     constructor() {
         this.notes = [];
         this.filterShowFinishActive = false;
@@ -93,4 +95,4 @@ class NoteServices {
     }
 }
 
-const noteService = new NoteServices();
+export const noteService = new NoteServices();
