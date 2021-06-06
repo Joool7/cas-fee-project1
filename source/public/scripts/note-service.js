@@ -26,7 +26,6 @@ class NoteServices {
         note.content = content;
         note.importance = importance;
         note.dueDate = new Date(dueDate).setHours(8, 0, 0, 0);
-        console.log(new Date(note.dueDate).toISOString().substring(0,10));
     }
 
     updateSortOrder(){
@@ -38,9 +37,11 @@ class NoteServices {
         this.notes.sort((noteA, noteB) =>{
             if(noteA.dueDate > noteB.dueDate){
                 return 1;
-            } else{
+            }
+            if(noteA.dueDate < noteB.dueDate){
                 return -1;
             }
+            return 0;
         });
         return this.showFinished();
     }
@@ -50,9 +51,11 @@ class NoteServices {
         this.notes.sort((noteA, noteB) =>{
             if(noteA.createDate > noteB.createDate){
                 return 1;
-            } else{
+            }
+            if(noteA.createDate < noteB.createDate){
                 return -1;
             }
+            return 0;
         });
         return this.showFinished();
     }
@@ -62,9 +65,11 @@ class NoteServices {
         this.notes.sort((noteA, noteB) =>{
             if(noteA.importance > noteB.importance){
                 return -1;
-            } else{
+            }
+            if(noteA.importance < noteB.importance){
                 return 1;
             }
+            return 0;
         });
         return this.showFinished();
     }

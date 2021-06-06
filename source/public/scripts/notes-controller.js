@@ -58,26 +58,26 @@ btnNewNote.addEventListener('click', openNewNotePopUp);
 
 // Sort
 btnSortFinish.addEventListener('click', () => {
-    const noteServiceSort = noteService.sortFinish(noteService);
+    const noteServiceSort = noteService.sortFinish();
     view.update(noteServiceSort);
     btnClearActive();
     btnSortFinish.classList.add('btn-active');
 });
 btnSortCreate.addEventListener('click', () => {
-    const noteServiceSort = noteService.sortCreate(noteService);
+    const noteServiceSort = noteService.sortCreate();
     view.update(noteServiceSort);
     btnClearActive();
     btnSortCreate.classList.add('btn-active');
 });
 btnSortImportance.addEventListener('click', () => {
-    const noteServiceSort = noteService.sortImportance(noteService);
+    const noteServiceSort = noteService.sortImportance();
     view.update(noteServiceSort);
     btnClearActive();
     btnSortImportance.classList.add('btn-active');
 });
 btnShowFinished.addEventListener('click', () => {
     noteService.toggleShowFinished(noteService);
-    const noteServiceSort = noteService.showFinished(noteService);
+    const noteServiceSort = noteService.showFinished();
     view.update(noteServiceSort);
     btnShowFinished.classList.toggle('btn-active');
 });
