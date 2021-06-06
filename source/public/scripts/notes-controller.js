@@ -18,9 +18,18 @@ function toggleColorStyle(){
     document.body.classList.toggle('dark-mode');
 }
 
-function openNewNotePopUp(){
+function openNotePopUp(){
     document.querySelector('.popup-container').style.display = 'flex';
+}
+
+function openNewNotePopUp(){
+    openNotePopUp();
     initNewNote();
+}
+
+function openEditNotePopUp(note){
+    openNotePopUp();
+    openExistingNote(note);
 }
 
 function closeNewNotePopUp(){
@@ -28,19 +37,32 @@ function closeNewNotePopUp(){
 }
 
 function bubbleClickFinishNoteHandler(event) {
-    const inputNoteId = Number(event.target.dataset.noteId);
-    const tempNote = noteService.getNote(inputNoteId);
-    if(tempNote.finished === false){
-        tempNote.finished = true;
-    } else{
-        tempNote.finished = false;
+    console.log(event.target.type);
+    if (event.target.type === 'checkbox') {
+        const inputNoteId = Number(event.target.dataset.noteId);
+        const tempNote = noteService.getNote(inputNoteId);
+        if (tempNote.finished === false) {
+            tempNote.finished = true;
+        } else {
+            tempNote.finished = false;
+        }
+        view.update(noteService);
+    } else if (event.target.type === 'button') {
+        // edit Button
+        const inputNoteId = Number(event.target.dataset.noteBtnId);
+        const tempNote = noteService.getNote(inputNoteId);
+        openEditNotePopUp(tempNote);
     }
 }
 
 selColorStyle.addEventListener('change', toggleColorStyle);
 btnNewNote.addEventListener('click', openNewNotePopUp);
 btnNewNoteCreate.addEventListener('click', () => {
-    noteService.addNote(newNoteTitle.value, newNoteDescription.value, newNoteSelImportance, newNoteDate.value, false);
+    if (openedNoteId === ''){
+        noteService.addNote(newNoteTitle.value, newNoteDescription.value, newNoteSelImportance, newNoteDate.value, false);
+    } else {
+        noteService.updateNote(openedNoteId, newNoteTitle.value, newNoteDescription.value, newNoteSelImportance, newNoteDate.value);
+    }
     view.update(noteService);
     closeNewNotePopUp();
 });
@@ -60,6 +82,7 @@ btnSortImportance.addEventListener('click', () => {
     view.update(noteServiceSort);
 });
 btnShowFinished.addEventListener('click', () => {
+    noteService.toggleShowFinished(noteService);
     const noteServiceSort = noteService.showFinished(noteService);
     view.update(noteServiceSort);
 });

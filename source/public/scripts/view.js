@@ -3,7 +3,7 @@ class View{
         if (noteServiceSort.length === 0) {
         } else {
             noteList.innerHTML = '';
-            noteServiceSort.forEach((note) => {
+            noteServiceSort.notes.forEach((note) => {
                const tempTask = document.createElement('div');
                tempTask.className = 'note';
                tempTask.innerHTML = createNotesFragmentHtmlString({
@@ -15,6 +15,9 @@ class View{
                    content: note.content,
                });
                 noteList.appendChild(tempTask);
+                if(note.finished === true){
+                    document.querySelector(`[data-note-id="${note.id}"]`).setAttribute('checked', '');
+                }
             });
         }
     }
@@ -73,4 +76,4 @@ class View{
 }
 
 const view = new View();
-view.update(noteService.notes);
+view.update(noteService);

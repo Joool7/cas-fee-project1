@@ -4,8 +4,8 @@ class Note {
         this.title = title;
         this.content = content;
         this.importance = importance;
-        this.createDate = new Date().setHours(0,0,0,0);
-        this.dueDate = new Date(dueDate).setHours(0,0,0,0);
+        this.createDate = new Date().setHours(8,0,0,0);
+        this.dueDate = new Date(dueDate).setHours(8,0,0,0);
         this.finished = finished;
     }
 }

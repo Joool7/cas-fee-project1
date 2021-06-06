@@ -59,6 +59,7 @@ main {
     align-content: space-between;
 }
 
+
 button {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
@@ -92,8 +93,7 @@ button {
 
 .sort-buttons button {
     height: 2rem;
-    width: 8rem;
-    background: transparent;
+    width: 10rem;
 }
 
 .sort-buttons button:last-child {

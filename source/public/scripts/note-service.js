@@ -1,6 +1,8 @@
 class NoteServices {
     constructor() {
         this.notes = [];
+        this.filterShowFinishActive = false;
+        this.sortOrder = '';
 
         this.addNote('1', 'content1', 5, '2021-05-29', false);
         this.addNote('2', 'Lorem i Stet clita kasd gubergren,amet.', 1, '2021-05-30', false);
@@ -14,41 +16,70 @@ class NoteServices {
     }
 
     getNote(id){
-        return this.notes.find(element => element.id === id);
+        return this.notes.find((element) => element.id === id);
+    }
+
+    updateNote(id, title, content, importance, dueDate, finished){
+        const note = this.getNote(id);
+        note.title = title;
+        note.content = content;
+        note.importance = importance;
+        note.dueDate = new Date(dueDate).setHours(8, 0, 0, 0);
+        console.log(new Date(note.dueDate).toISOString().substring(0,10));
     }
 
     sortFinish() {
-        return this.notes.sort((noteA, noteB) =>{
+        this.sortOrder = 'sortFinish';
+        this.notes.sort((noteA, noteB) =>{
             if(noteA.dueDate > noteB.dueDate){
                 return 1;
             } else{
                 return -1;
             }
         });
+        return this.showFinished();
     }
 
     sortCreate() {
-        return this.notes.sort((noteA, noteB) =>{
+        this.sortOrder = 'sortCreate';
+        this.notes.sort((noteA, noteB) =>{
             if(noteA.createDate > noteB.createDate){
                 return 1;
             } else{
                 return -1;
             }
         });
+        return this.showFinished();
     }
 
     sortImportance() {
-        return this.notes.sort((noteA, noteB) =>{
+        this.sortOrder = 'sortImportance';
+        this.notes.sort((noteA, noteB) =>{
             if(noteA.importance > noteB.importance){
                 return -1;
             } else{
                 return 1;
             }
         });
+        return this.showFinished();
     }
 
     showFinished() {
-        return this.notes.filter((note) => note.finished === false);
+        if (this.filterShowFinishActive === true){
+            const filteredNoteService = new NoteServices();
+            filteredNoteService.notes = this.notes.filter((note) => note.finished === false);
+            return filteredNoteService;
+        } else {
+            return this;
+        }
+    }
+
+    toggleShowFinished() {
+        if (this.filterShowFinishActive === false){
+            this.filterShowFinishActive = true;
+        } else {
+            this.filterShowFinishActive = false;
+        }
     }
 }
 
