@@ -17,7 +17,7 @@ class View{
                const tempTask = document.createElement('div');
                tempTask.className = 'note';
                tempTask.innerHTML = this.createNotesFragmentHtmlString({
-                   dueDate: this.renderDate(note.dueDate),
+                   dueDate: View.renderDate(note.dueDate),
                    title: note.title,
                    importance: Array(note.importance).fill('!').join(' '),
                    id: note.id,
@@ -31,7 +31,7 @@ class View{
         }
     }
 
-    renderDate(date) {
+    static renderDate(date){
         const actDate = new Date().setHours(0, 0, 0, 0);
         const daysBetweenRaw = (date - actDate) / (24 * 60 * 60 * 1000);
         let daysBetween;
@@ -49,7 +49,7 @@ class View{
                 return `In ${daysBetween} Tagen`;
             }
             if (daysBetween > 1) {
-                return `Am ${this.getDayOfWeek(new Date(date).getDay())}`;
+                return `Am ${View.getDayOfWeek(new Date(date).getDay())}`;
             }
                 return 'Morgen';
         }
@@ -60,10 +60,12 @@ class View{
         if (daysBetween <= -2){
             // past
             return `Termin fällig seit ${daysBetween * -1} Tagen`;
+        } else {
+            return 'null';
         }
     }
 
-    getDayOfWeek(day){
+    static getDayOfWeek(day){
         switch (day){
             case 0:
                 return 'Sonntag';
@@ -79,8 +81,11 @@ class View{
                 return 'Freitag';
             case 6:
                 return 'Samstag';
+            default:
+                return 'This is not a day';
         }
     }
 }
 
-export const view = new View();
+const view = new View();
+export default view;

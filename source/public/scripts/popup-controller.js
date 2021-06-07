@@ -1,5 +1,5 @@
 import {noteService} from './note-service.js';
-import {view} from './view.js';
+import view from './view.js';
 
 class PopupController {
     constructor() {
@@ -82,10 +82,18 @@ class PopupController {
                 });
         this.btnClosePopUp.addEventListener('click', () => this.closeNewNotePopUp());
 
-// close window by click on container
-        //window.addEventListener('click', (event) => event.target === this.popUpContainer ? this.popUpContainer.style.display = 'none' : '');
+        // close window by click on container
+        window.addEventListener(
+            'click',
+            (event) => {
+                if (event.target === this.popUpContainer) {
+                    this.popUpContainer.style.display = 'none';
+                }
+            },
+        );
     }
 }
 
-export const popupController = new PopupController();
+const popupController = new PopupController();
 popupController.initEventHandlers();
+export default popupController;

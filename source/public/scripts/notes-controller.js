@@ -1,6 +1,6 @@
 import {noteService} from './note-service.js';
-import {view} from './view.js';
-import {popupController} from './popup-controller.js';
+import view from './view.js';
+import popupController from './popup-controller.js';
 
 class NotesController {
     constructor() {
