@@ -1,6 +1,7 @@
 import {noteService} from './note-service.js';
 import view from './view.js';
 import popupController from './popup-controller.js';
+import notesStore from '../../services/notesStore.js';
 
 class NotesController {
     constructor() {
@@ -92,6 +93,8 @@ class NotesController {
 
     initialize(){
         this.initEventHandlers();
+        const notes = notesStore.all();
+        console.log(notes);
         view.update(noteService);
     }
 }

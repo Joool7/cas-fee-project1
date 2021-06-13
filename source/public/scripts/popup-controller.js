@@ -59,8 +59,13 @@ class PopupController {
 
     initEventHandlers() {
         this.newNoteImportanceSelector.addEventListener('click', (event) => this.bubbleClickEventHandler(event));
-        this.btnNoteSave.addEventListener('click', () => {
-                    if (this.openedNoteId === '') {
+        this.btnNoteSave.addEventListener('click', (e) => {
+            if ((this.newNoteTitle.value === '')
+                || (this.newNoteDescription.value === '')
+                || (this.newNoteDate.value === '')){
+                e.preventDefault();
+            } else {
+                if (this.openedNoteId === '') {
                         noteService.addNote(
                             this.newNoteTitle.value,
                             this.newNoteDescription.value,
@@ -79,7 +84,8 @@ class PopupController {
                     }
                     view.update(noteService.updateSortOrder());
                     this.closeNewNotePopUp();
-                });
+            }
+        });
         this.btnClosePopUp.addEventListener('click', () => this.closeNewNotePopUp());
 
         // close window by click on container

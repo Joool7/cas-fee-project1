@@ -70,11 +70,11 @@
     <div class="popup-container">
       <div class="popup-new-note">
         <h2>Neue Notiz</h2>
-        <form action="./save-data.php" class="input-field" >
+        <form action="/notes" method="post" class="input-field" >
           <label for="title" class="label-title">Titel</label>
-          <input type="text" name="title" id="title" class="new-note-title">
+          <input type="text" name="title" id="title" class="new-note-title" required>
           <label for="description" class="label-description">Notiz Inhalt</label>
-          <textarea name="description" id="description" class="new-note-description"></textarea>
+          <textarea name="description" id="description" class="new-note-description" required></textarea>
           <p class="label-importance">Wichtigkeit</p>
           <div class="new-note-importance">
             <h1 data-importance="1">!</h1>
@@ -84,8 +84,8 @@
             <h1 data-importance="5">!</h1>
           </div>
           <label for="date" class="label-date">Zu erledigen bis</label>
-          <input type="date"  name="date" id="date" class="new-note-date">
-          <button type="button" class="btn btn-note-create">Speichern</button>
+          <input type="date"  name="date" id="date" class="new-note-date" required>
+          <button type="submit" class="btn btn-note-create">Speichern</button>
         </form>
         <div class="close-pop-up">
           <button id="btn-close-pop-up" class="btn" data-btn-close-popup>Abbruch</button>

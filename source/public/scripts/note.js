@@ -1,11 +1,10 @@
 export default class Note {
-    constructor(id, title, content, importance, dueDate, finished = false){
-        this.id = id;
+    constructor(title, content, importance, dueDate, finished = false){
         this.title = title;
         this.content = content;
         this.importance = importance;
-        this.createDate = new Date().setHours(8, 0, 0, 0);
-        this.dueDate = new Date(dueDate).setHours(8, 0, 0, 0);
+        this.createDate = new Date().toISOString().slice(0, 10);
+        this.dueDate = new Date(dueDate).toISOString().slice(0, 10);
         this.finished = finished;
     }
 }
