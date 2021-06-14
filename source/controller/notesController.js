@@ -19,6 +19,13 @@ export class NotesController{
         res.json(await notesStore.get(req.params.id));
     }
 
+    async updateNote(req, res) {
+        res.json(await notesStore.update(
+            req.params.id,
+            req.body.note,
+            ));
+    }
+
     async deleteNote(req, res) {
         res.json(await notesStore.delete(req.params.id));
     }

@@ -30,8 +30,19 @@ export class NotesStore {
         return await this.db.findOne({_id: id});
     }
 
+    async update(id, note) {
+        await this.db.update({_id: id}, {$set: {
+                                                title: note.title,
+                                                content: note.content,
+                                                importance: note.importance,
+                                                createDate: note.createDate,
+                                                dueDate: note.dueDate,
+                                                finished: note.finished}});
+        return await this.get(id);
+    }
+
     async all() {
-        return await this.db.cfind({}).sort({ createDate: -1 }).exec();
+        return await this.db.cfind({}).sort({ dueDate: +1 }).exec();
     }
 }
 

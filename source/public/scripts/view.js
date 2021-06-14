@@ -6,8 +6,7 @@ class View{
         this.noteList = document.querySelector('.notes-list');
     }
 
-    async update(){
-        const noteServiceSort = await noteService.getNotes();
+    update(noteServiceSort){
         console.log(noteServiceSort);
         if (noteServiceSort.length === 0) {
             this.noteList.innerHTML = '';
@@ -24,12 +23,14 @@ class View{
                    dueDate: View.renderDate(note.dueDate),
                    title: note.title,
                    importance: Array(note.importance).fill('!').join(' '),
-                   id: note.id,
+                   // eslint-disable-next-line no-underscore-dangle
+                   id: note._id,
                    content: note.content,
                });
                 this.noteList.appendChild(tempTask);
                 if (note.finished === true){
-                    document.querySelector(`[data-note-id="${note.id}"]`).setAttribute('checked', '');
+                    // eslint-disable-next-line no-underscore-dangle
+                    document.querySelector(`[data-note-id="${note._id}"]`).setAttribute('checked', '');
                 }
             });
         }
@@ -38,7 +39,6 @@ class View{
     static renderDate(date){
         const givenDate = new Date(date).setHours(0, 0, 0, 0);
         const actDate = new Date().setHours(0, 0, 0, 0);
-        console.log(givenDate - actDate);
         const daysBetweenRaw = (givenDate - actDate) / (24 * 60 * 60 * 1000);
         let daysBetween;
         if (daysBetweenRaw > 0){

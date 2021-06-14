@@ -39,16 +39,18 @@ class NotesController {
         popupController.openExistingNote(note);
     }
 
-    bubbleClickFinishNoteHandler(event) {
+    async bubbleClickFinishNoteHandler(event) {
         if (event.target.type === 'checkbox') {
-            const inputNoteId = Number(event.target.dataset.noteId);
-            const tempNote = noteService.getNote(inputNoteId);
+            const inputNoteId = event.target.dataset.noteId;
+            const tempNote = await noteService.getNote(inputNoteId);
             if (tempNote.finished === false) {
                 tempNote.finished = true;
             } else {
                 tempNote.finished = false;
             }
-            view.update(noteService.updateSortOrder());
+            const notes = await noteService.updateNote(inputNoteId, tempNote);
+            console.log(notes);
+            //view.update(await noteService.updateSortOrder());
         } else if (event.target.type === 'button') {
             // edit Button
             const inputNoteId = Number(event.target.dataset.noteBtnId);
@@ -61,28 +63,28 @@ class NotesController {
         this.selColorStyle.addEventListener('change', () => this.toggleColorStyle());
         this.btnNewNote.addEventListener('click', () => this.openNewNotePopUp());
 
-        this.btnSortFinish.addEventListener('click', () => {
-            const noteServiceSort = noteService.sortFinish();
-            view.update(noteServiceSort);
+        this.btnSortFinish.addEventListener('click', async () => {
+            const notes = await noteService.sortFinish();
+            view.update(notes);
             this.btnClearActive();
             this.btnSortFinish.classList.add('btn-active');
         });
-        this.btnSortCreate.addEventListener('click', () => {
-            const noteServiceSort = noteService.sortCreate();
-            view.update(noteServiceSort);
+        this.btnSortCreate.addEventListener('click', async () => {
+            const notes = await noteService.sortCreate();
+            view.update(notes);
             this.btnClearActive();
             this.btnSortCreate.classList.add('btn-active');
         });
-        this.btnSortImportance.addEventListener('click', () => {
-            const noteServiceSort = noteService.sortImportance();
-            view.update(noteServiceSort);
+        this.btnSortImportance.addEventListener('click', async () => {
+            const notes = await noteService.sortImportance();
+            view.update(notes);
             this.btnClearActive();
             this.btnSortImportance.classList.add('btn-active');
         });
-        this.btnShowFinished.addEventListener('click', () => {
+        this.btnShowFinished.addEventListener('click', async () => {
             noteService.toggleShowFinished(noteService);
-            const noteServiceSort = noteService.showFinished();
-            view.update(noteServiceSort);
+            const notes = await noteService.showFinished();
+            view.update(notes);
             this.btnShowFinished.classList.toggle('btn-active');
         });
         this.notesClickListener.addEventListener('click', (event) => {
@@ -90,9 +92,10 @@ class NotesController {
         });
     }
 
-    initialize(){
+    async initialize(){
         this.initEventHandlers();
-        view.update(noteService);
+        const notes = await noteService.getNotes();
+        view.update(notes);
     }
 }
 
