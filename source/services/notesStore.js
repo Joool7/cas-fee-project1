@@ -1,40 +1,37 @@
-import Datastore from 'nedb';
-import Note from '../public/scripts/note.js';
+import Datastore from 'nedb-promise';
 
-const db = new Datastore({filename: '../data/notes.db', autoload: true});
+export class Note {
+    constructor(title, content, importance, dueDate, finished = false){
+        this.title = title;
+        this.content = content;
+        this.importance = importance;
+        this.createDate = new Date().toISOString().slice(0, 10);
+        this.dueDate = new Date(dueDate).toISOString().slice(0, 10);
+        this.finished = finished;
+    }
+}
 
-class NotesStore {
-    constructor() {
+export class NotesStore {
+    constructor(db) {
+        this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
     }
 
-    add(title, content, importance, dueDate, finished, callback) {
-        console.log("  publicAddOrder start");
-        let note = new Note(title, content, importance, dueDate);
-        db.insert(note, function (err, newDoc) {
-            console.log("    insert");
-            if (callback) {
-                callback(err, newDoc);
-            }
-        });
-        console.log("  publicAddOrder end");
+    async add(title, content, importance, dueDate, finished) {
+        let note = new Note(title, content, importance, dueDate, finished);
+        return await this.db.insert(note);
     }
 
-    delete(id, callback) {
-        db.update({_id: id}, {$set: {"state": "DELETED"}}, {returnUpdatedDocs: true}, function (err, numDocs, doc) {
-            callback(err, doc);
-        });
+    async delete(id) {
+        await this.db.update({_id: id});
+        return await this.get(id);
     }
 
-    get(id, callback) {
-        db.findOne({_id: id}, function (err, doc) {
-            callback(err, doc);
-        });
+    async get(id) {
+        return await this.db.findOne({_id: id});
     }
 
-    all(callback) {
-        db.find({}, function (err, docs) {
-            callback(err, docs);
-        });
+    async all() {
+        return await this.db.cfind({}).sort({ createDate: -1 }).exec();
     }
 }
 

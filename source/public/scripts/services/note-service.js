@@ -1,4 +1,5 @@
-import Note from './note.js';
+import Note from '../note.js';
+import { httpService } from './http-service.js';
 
 export class NoteServices {
     constructor() {
@@ -6,11 +7,19 @@ export class NoteServices {
         this.filterShowFinishActive = false;
         this.sortOrder = 'sortFinish';
 
-        //this.addNote('1', 'content1', 5, '2021-05-29', false);
-        //this.addNote('2', 'Lorem i Stet clita kasd gubergren,amet.', 1, '2021-05-28', false);
-        //this.addNote('3', 'Lorem i Stet clita kasd gubergren,amet.', 3, '2021-05-31', false);
-        //this.addNote('4', 'Lorem impores et ea rebum. Sakimata sanctus est Lorem ipsum dolor sit amet.', 2, '2021-06-02', false);
+        // this.addNote('1', 'content1', 5, '2021-05-29', false);
+        // this.addNote('2', 'Lorem i Stet clita kasd gubergren,amet.', 1, '2021-05-28', false);
+        // this.addNote('3', 'Lorem i Stet clita kasd gubergren,amet.', 3, '2021-05-31', false);
+        // this.addNote('4', 'Lorem impores et ea rebum. Sakimata sanctus est Lorem ipsum dolor sit amet.', 2, '2021-06-02', false);
         this.updateSortOrder();
+    }
+
+    async createNote(title, content, importance, dueDate, finished) {
+        return await httpService.ajax('POST', '/notes', { title, content, importance, dueDate, finished });
+    }
+
+    async getNotes() {
+        return await httpService.ajax('GET', '/notes', undefined);
     }
 
     addNote(title, content, importance, dueDate, finished) {

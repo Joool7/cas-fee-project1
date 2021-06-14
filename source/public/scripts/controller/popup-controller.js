@@ -1,5 +1,5 @@
-import {noteService} from './note-service.js';
-import view from './view.js';
+import {noteService} from '../services/note-service.js';
+import view from '../view.js';
 
 class PopupController {
     constructor() {
@@ -59,12 +59,23 @@ class PopupController {
 
     initEventHandlers() {
         this.newNoteImportanceSelector.addEventListener('click', (event) => this.bubbleClickEventHandler(event));
-        this.btnNoteSave.addEventListener('click', (e) => {
+        this.btnNoteSave.addEventListener('click', async (e) => {
             if ((this.newNoteTitle.value === '')
                 || (this.newNoteDescription.value === '')
                 || (this.newNoteDate.value === '')){
                 e.preventDefault();
             } else {
+                e.preventDefault();
+                await noteService.createNote(
+                    this.newNoteTitle.value,
+                    this.newNoteDescription.value,
+                    this.newNoteSelImportance,
+                    this.newNoteDate.value,
+                    false,
+                );
+                view.update();
+                this.closeNewNotePopUp();
+            }/* else {
                 if (this.openedNoteId === '') {
                         noteService.addNote(
                             this.newNoteTitle.value,
@@ -84,7 +95,7 @@ class PopupController {
                     }
                     view.update(noteService.updateSortOrder());
                     this.closeNewNotePopUp();
-            }
+            }*/
         });
         this.btnClosePopUp.addEventListener('click', () => this.closeNewNotePopUp());
 

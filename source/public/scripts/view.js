@@ -1,11 +1,15 @@
+import {noteService} from './services/note-service.js';
+
 class View{
     constructor() {
         this.createNotesFragmentHtmlString = Handlebars.compile(document.getElementById('note-template').innerHTML);
         this.noteList = document.querySelector('.notes-list');
     }
 
-    update(noteServiceSort){
-        if (noteServiceSort.notes.length === 0) {
+    async update(){
+        const noteServiceSort = await noteService.getNotes();
+        console.log(noteServiceSort);
+        if (noteServiceSort.length === 0) {
             this.noteList.innerHTML = '';
             const tempTask = document.createElement('div');
             tempTask.className = 'empty-note';
@@ -13,7 +17,7 @@ class View{
             this.noteList.appendChild(tempTask);
         } else {
             this.noteList.innerHTML = '';
-            noteServiceSort.notes.forEach((note) => {
+            noteServiceSort.forEach((note) => {
                const tempTask = document.createElement('div');
                tempTask.className = 'note';
                tempTask.innerHTML = this.createNotesFragmentHtmlString({
@@ -32,8 +36,10 @@ class View{
     }
 
     static renderDate(date){
+        const givenDate = new Date(date).setHours(0, 0, 0, 0);
         const actDate = new Date().setHours(0, 0, 0, 0);
-        const daysBetweenRaw = (date - actDate) / (24 * 60 * 60 * 1000);
+        console.log(givenDate - actDate);
+        const daysBetweenRaw = (givenDate - actDate) / (24 * 60 * 60 * 1000);
         let daysBetween;
         if (daysBetweenRaw > 0){
             daysBetween = Math.floor(daysBetweenRaw);
@@ -49,7 +55,7 @@ class View{
                 return `In ${daysBetween} Tagen`;
             }
             if (daysBetween > 1) {
-                return `Am ${View.getDayOfWeek(new Date(date).getDay())}`;
+                return `Am ${View.getDayOfWeek(new Date(givenDate).getDay())}`;
             }
                 return 'Morgen';
         }
