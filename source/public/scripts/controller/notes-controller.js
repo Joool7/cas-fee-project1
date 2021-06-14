@@ -49,7 +49,6 @@ class NotesController {
                 tempNote.finished = false;
             }
             const notes = await noteService.updateNote(inputNoteId, tempNote);
-            console.log(notes);
             //view.update(await noteService.updateSortOrder());
         } else if (event.target.type === 'button') {
             // edit Button
