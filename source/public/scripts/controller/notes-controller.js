@@ -82,8 +82,8 @@ class NotesController {
         });
         this.btnShowFinished.addEventListener('click', async () => {
             noteService.toggleShowFinished(noteService);
-            const notes = await noteService.showFinished();
-            view.update(notes);
+            const notes = await noteService.sortImportance();
+            view.update(await noteService.showFinished(notes));
             this.btnShowFinished.classList.toggle('btn-active');
         });
         this.notesClickListener.addEventListener('click', (event) => {

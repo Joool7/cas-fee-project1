@@ -1,15 +1,5 @@
 import Datastore from 'nedb-promise';
-
-export class Note {
-    constructor(title, content, importance, dueDate, finished = false){
-        this.title = title;
-        this.content = content;
-        this.importance = importance;
-        this.createDate = new Date().toISOString().slice(0, 10);
-        this.dueDate = new Date(dueDate).toISOString().slice(0, 10);
-        this.finished = finished;
-    }
-}
+import {Note} from './note.js';
 
 export class NotesStore {
     constructor(db) {
@@ -17,17 +7,16 @@ export class NotesStore {
     }
 
     async add(title, content, importance, dueDate, finished) {
-        let note = new Note(title, content, importance, dueDate, finished);
-        return await this.db.insert(note);
+        return this.db.insert(new Note(title, content, importance, dueDate, finished));
     }
 
     async delete(id) {
         await this.db.update({_id: id});
-        return await this.get(id);
+        return this.get(id);
     }
 
     async get(id) {
-        return await this.db.findOne({_id: id});
+        return this.db.findOne({_id: id});
     }
 
     async update(id, note) {
@@ -38,11 +27,11 @@ export class NotesStore {
                                                 createDate: note.createDate,
                                                 dueDate: note.dueDate,
                                                 finished: note.finished}});
-        return await this.get(id);
+        return this.get(id);
     }
 
     async all() {
-        return await this.db.cfind({}).sort({ dueDate: +1 }).exec();
+        return this.db.cfind({}).sort({ dueDate: +1 }).exec();
     }
 }
 

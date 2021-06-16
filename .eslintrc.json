@@ -20,6 +20,10 @@
     "linebreak-style": "off",
     "space-before-blocks": "off",
     "no-else-return": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off"
+  },
+  "globals": {
+    "Handlebars": true
   }
 }

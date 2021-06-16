@@ -7,20 +7,19 @@ export class NoteServices {
     }
 
     async createNote(title, content, importance, dueDate, finished) {
-        return await httpService.ajax('POST', '/notes', { title, content, importance, dueDate, finished });
+        return httpService.ajax('POST', '/notes', { title, content, importance, dueDate, finished });
     }
 
     async getNotes() {
-        return await httpService.ajax('GET', '/notes', undefined);
+        return httpService.ajax('GET', '/notes', undefined);
     }
 
     async getNote(id) {
-        return await httpService.ajax('GET', `/notes/${id}`, undefined);
+        return httpService.ajax('GET', `/notes/${id}`, undefined);
     }
 
     async updateNote(id, note) {
-        console.log(note);
-        return await httpService.ajax('PATCH', `/notes/${id}`, {note});
+        return httpService.ajax('PATCH', `/notes/${id}`, {note});
     }
 
     updateSortOrder(){

@@ -1,17 +1,6 @@
-{"title":"Notiz 7","content":"BlaBliBlu","importance":2,"dueDate":"2021-06-20","_id":"0JoyDgCHzspFJKGj"}
-{"title":"bli","content":"bla","importance":1,"createDate":"2021-06-16","dueDate":"2021-06-23","finished":false,"_id":"3XTiDs8j5E9regEQ"}
-{"title":"hallihallo","content":"judihuu","importance":3,"createDate":"2021-06-16","dueDate":"2021-06-18","finished":false,"_id":"7MU7m8jW51IOgluA"}
-{"_id":"IK8PBqZDd22gGaTg"}
-{"title":"Notiz4","content":"Inhalt4","importance":4,"createDate":"2021-06-14","dueDate":"2021-06-22","finished":false,"_id":"KHp9AebffFVvhSrI"}
-{"title":"Notiz3","content":"Inhalt3","importance":3,"createDate":"2021-06-14","dueDate":"2021-06-16","finished":false,"_id":"b4veaofAMYEfpx6H"}
-{"title":"Neuste Notiz","content":"neuneuneu","importance":3,"createDate":"2021-06-16","dueDate":"2021-06-18","finished":false,"_id":"nkDAzfGw6Ub9OYpO"}
-{"_id":"qvpAm2Ai0jCihPfB"}
-{"_id":"IK8PBqZDd22gGaTg","title":"Notiz 6","content":"Sechs6sechs6","importance":3,"dueDate":"2021-06-02"}
-{"_id":"qvpAm2Ai0jCihPfB","title":"Notiz 1","content":"pillapallapuu","importance":2,"dueDate":"2021-06-10"}
-{"_id":"qvpAm2Ai0jCihPfB","title":"Notiz 1","content":"pillapallapuu","importance":2,"dueDate":"2021-06-10","finished":false}
-{"_id":"qvpAm2Ai0jCihPfB","title":"Notiz 1","content":"pillapallapuu","importance":2,"dueDate":"2021-06-10","finished":true}
-{"_id":"qvpAm2Ai0jCihPfB","title":"Notiz 1","content":"pillapallapuu","importance":2,"dueDate":"2021-06-10","finished":false}
-{"_id":"IK8PBqZDd22gGaTg","title":"Notiz 6","content":"Sechs6sechs6","importance":3,"dueDate":"2021-06-02","finished":false}
-{"_id":"IK8PBqZDd22gGaTg","title":"Notiz 6","content":"Sechs6sechs6","importance":3,"dueDate":"2021-06-02","finished":true}
-{"title":"Notiz3","content":"Inhalt3","importance":3,"createDate":"2021-06-14","dueDate":"2021-06-16","finished":true,"_id":"b4veaofAMYEfpx6H"}
-{"title":"dasf","content":"adsf","importance":2,"createDate":"2021-06-16","dueDate":"2021-06-15","finished":false,"_id":"eIdZgb0TxrelyHpq"}
+{"title":"Notiz 1","content":"Notiz 11111","importance":1,"createDate":"2021-06-16","dueDate":"2021-06-16","finished":false,"_id":"3U04eUIVeiv8I1kl"}
+{"title":"Notiz 3","content":"HeiHowHui","importance":3,"createDate":"2021-06-16","dueDate":"2021-06-09","finished":false,"_id":"8wptmcAqRlkMB07X"}
+{"title":"Notiz 5","content":"asdfhklasdf","importance":5,"createDate":"2021-06-16","dueDate":"2021-06-24","finished":false,"_id":"JqszZzRqOT47M37E"}
+{"title":"Notiz 2","content":"BliBla palidu","importance":2,"createDate":"2021-06-16","dueDate":"2021-06-17","finished":false,"_id":"X5ufsAqrTqy3DiAk"}
+{"title":"Notiz 4","content":"jupiii","importance":4,"createDate":"2021-06-16","dueDate":"2021-06-23","finished":false,"_id":"bl8KtVUg2vsIeBy8"}
+{"title":"Notiz 3","content":"HeiHowHui","importance":3,"createDate":"2021-06-16","dueDate":"2021-06-09","finished":true,"_id":"8wptmcAqRlkMB07X"}
