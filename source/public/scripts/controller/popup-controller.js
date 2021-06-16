@@ -44,9 +44,10 @@ class PopupController {
 
     openExistingNote(note) {
         this.popUpTitle.innerText = 'Notiz bearbeiten';
-        this.openedNoteId = note.id;
+        this.openedNoteId = note._id;
         this.newNoteTitle.value = note.title;
         this.newNoteDescription.value = note.content;
+        this.createDate = new Date(note.createDate).toISOString().substring(0, 10);
         this.newNoteDate.value = new Date(note.dueDate).toISOString().substring(0, 10);
         this.newNoteSelImportance = note.importance;
         this.paintImportance(5, this.newNoteSelImportance);
@@ -65,37 +66,26 @@ class PopupController {
                 || (this.newNoteDate.value === '')){
                 e.preventDefault();
             } else {
-                e.preventDefault();
-                await noteService.createNote(
-                    this.newNoteTitle.value,
-                    this.newNoteDescription.value,
-                    this.newNoteSelImportance,
-                    this.newNoteDate.value,
-                    false,
-                );
-                view.update();
-                this.closeNewNotePopUp();
-            }/* else {
                 if (this.openedNoteId === '') {
-                        noteService.addNote(
-                            this.newNoteTitle.value,
-                            this.newNoteDescription.value,
-                            this.newNoteSelImportance,
-                            this.newNoteDate.value,
-                            false,
-                            );
-                    } else {
-                        noteService.updateNote(
-                            this.openedNoteId,
-                            this.newNoteTitle.value,
-                            this.newNoteDescription.value,
-                            this.newNoteSelImportance,
-                            this.newNoteDate.value,
-                        );
-                    }
-                    view.update(noteService.updateSortOrder());
-                    this.closeNewNotePopUp();
-            }*/
+                    await noteService.createNote(
+                        this.newNoteTitle.value,
+                        this.newNoteDescription.value,
+                        this.newNoteSelImportance,
+                        this.newNoteDate.value,
+                        false,
+                    );
+                } else {
+                    console.log('yes');
+                    const tempNote = await noteService.getNote(this.openedNoteId);
+                    tempNote.title = this.newNoteTitle.value;
+                    tempNote.content = this.newNoteDescription.value;
+                    tempNote.importance = this.newNoteSelImportance;
+                    tempNote.dueDate = this.newNoteDate.value;
+                    await noteService.updateNote(this.openedNoteId, tempNote);
+                }
+                view.update(noteService.updateSortOrder());
+                this.closeNewNotePopUp();
+            }
         });
         this.btnClosePopUp.addEventListener('click', () => this.closeNewNotePopUp());
 

@@ -1,5 +1,3 @@
-import {noteService} from './services/note-service.js';
-
 class View{
     constructor() {
         this.createNotesFragmentHtmlString = Handlebars.compile(document.getElementById('note-template').innerHTML);
@@ -7,7 +5,6 @@ class View{
     }
 
     update(noteServiceSort){
-        console.log(noteServiceSort);
         if (noteServiceSort.length === 0) {
             this.noteList.innerHTML = '';
             const tempTask = document.createElement('div');

@@ -48,13 +48,13 @@ class NotesController {
             } else {
                 tempNote.finished = false;
             }
-            const notes = await noteService.updateNote(inputNoteId, tempNote);
-            //view.update(await noteService.updateSortOrder());
+            await noteService.updateNote(inputNoteId, tempNote);
+            view.update(await noteService.updateSortOrder());
         } else if (event.target.type === 'button') {
             // edit Button
-            const inputNoteId = Number(event.target.dataset.noteBtnId);
-            const tempNote = noteService.getNote(inputNoteId);
-            this.openEditNotePopUp(tempNote);
+            const inputNoteId = event.target.dataset.noteBtnId;
+            const tempNote = await noteService.getNote(inputNoteId);
+            await this.openEditNotePopUp(tempNote);
         }
     }
 

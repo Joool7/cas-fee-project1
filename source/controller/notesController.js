@@ -1,11 +1,11 @@
 import {notesStore} from '../services/notesStore.js';
 
 export class NotesController{
-    async getNotes(req, res) {
+    async getNotes (req, res) {
         res.json((await notesStore.all()));
     }
 
-    async createNote(req, res) {
+    async createNote (req, res) {
         res.json(await notesStore.add(
             req.body.title,
             req.body.content,
@@ -15,18 +15,18 @@ export class NotesController{
         ));
     }
 
-    async showNote(req, res) {
+    async showNote (req, res) {
         res.json(await notesStore.get(req.params.id));
     }
 
-    async updateNote(req, res) {
+    async updateNote (req, res) {
         res.json(await notesStore.update(
             req.params.id,
             req.body.note,
             ));
     }
 
-    async deleteNote(req, res) {
+    async deleteNote (req, res) {
         res.json(await notesStore.delete(req.params.id));
     }
 }

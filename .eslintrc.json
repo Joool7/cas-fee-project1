@@ -19,6 +19,7 @@
     "object-curly-spacing": "off",
     "linebreak-style": "off",
     "space-before-blocks": "off",
-    "no-else-return": "off"
+    "no-else-return": "off",
+    "no-underscore-dangle": "off"
   }
 }

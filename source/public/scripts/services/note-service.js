@@ -1,9 +1,7 @@
-import Note from '../note.js';
 import { httpService } from './http-service.js';
 
 export class NoteServices {
     constructor() {
-        this.notes = [];
         this.filterShowFinishActive = false;
         this.sortOrder = 'sortFinish';
     }
@@ -21,16 +19,9 @@ export class NoteServices {
     }
 
     async updateNote(id, note) {
+        console.log(note);
         return await httpService.ajax('PATCH', `/notes/${id}`, {note});
     }
-
-    /*updateNote(id, title, content, importance, dueDate){
-        const note = this.getNote(id);
-        note.title = title;
-        note.content = content;
-        note.importance = importance;
-        note.dueDate = new Date(dueDate).setHours(8, 0, 0, 0);
-    }*/
 
     updateSortOrder(){
         return this[this.sortOrder]();
