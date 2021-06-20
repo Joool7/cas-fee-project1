@@ -3,6 +3,7 @@ import view from '../view.js';
 
 class PopupController {
     constructor() {
+        this.newNoteForm = document.querySelector('.input-field');
         this.newNoteTitle = document.querySelector('.new-note-title');
         this.newNoteDescription = document.querySelector('.new-note-description');
         this.newNoteImportanceSelector = document.querySelector('.new-note-importance');
@@ -10,6 +11,7 @@ class PopupController {
         this.newNoteDate = document.querySelector('.new-note-date');
         this.popUpContainer = document.querySelector('.popup-container');
         this.popUpTitle = document.querySelector('.popup-new-note h2');
+
 
         this.btnNoteSave = document.querySelector('.btn-note-create');
         this.btnClosePopUp = document.querySelector('[data-btn-close-popup]');
@@ -60,12 +62,8 @@ class PopupController {
 
     initEventHandlers() {
         this.newNoteImportanceSelector.addEventListener('click', (event) => this.bubbleClickEventHandler(event));
-        this.btnNoteSave.addEventListener('click', async (e) => {
-            if ((this.newNoteTitle.value === '')
-                || (this.newNoteDescription.value === '')
-                || (this.newNoteDate.value === '')){
-                e.preventDefault();
-            } else {
+        this.btnNoteSave.addEventListener('click', async () => {
+            if (this.newNoteForm.checkValidity()){
                 if (this.openedNoteId === '') {
                     await noteService.createNote(
                         this.newNoteTitle.value,
@@ -75,7 +73,6 @@ class PopupController {
                         false,
                     );
                 } else {
-                    console.log('yes');
                     const tempNote = await noteService.getNote(this.openedNoteId);
                     tempNote.title = this.newNoteTitle.value;
                     tempNote.content = this.newNoteDescription.value;
