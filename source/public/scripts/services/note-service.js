@@ -22,6 +22,10 @@ export class NoteServices {
         return httpService.ajax('PATCH', `/notes/${id}`, {note});
     }
 
+    async deleteNote(id) {
+        return httpService.ajax('DELETE', `/notes/${id}`, undefined);
+    }
+
     setSortOrderFinish(){
         this.sortOrder = 'sortFinish';
     }

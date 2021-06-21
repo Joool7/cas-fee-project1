@@ -14,6 +14,7 @@ class PopupController {
 
 
         this.btnNoteSave = document.querySelector('.btn-note-create');
+        this.btnNoteDelete = document.querySelector('.btn-note-delete');
         this.btnClosePopUp = document.querySelector('[data-btn-close-popup]');
 
         this.newNoteSelImportance = 0;
@@ -22,6 +23,15 @@ class PopupController {
 
     closeNewNotePopUp() {
         this.popUpContainer.style.display = 'none';
+        this.hideBtnDelete();
+    }
+
+    hideBtnDelete(){
+        this.btnNoteDelete.classList.add('invisible');
+    }
+
+    showBtnDelete(){
+        this.btnNoteDelete.classList.remove('invisible');
     }
 
     paintImportance(length, selection) {
@@ -50,6 +60,7 @@ class PopupController {
             this.createDate = new Date(note.createDate).toISOString().substring(0, 10);
             this.newNoteDate.value = new Date(note.dueDate).toISOString().substring(0, 10);
             this.newNoteSelImportance = note.importance;
+            this.showBtnDelete();
         }
         this.paintImportance(5, this.newNoteSelImportance);
         this.newNoteTitle.focus();
@@ -83,6 +94,11 @@ class PopupController {
                 this.closeNewNotePopUp();
                 view.update(await noteService.updateSortOrder());
             }
+        });
+        this.btnNoteDelete.addEventListener('click', async () => {
+            await noteService.deleteNote(this.openedNoteId);
+            this.closeNewNotePopUp();
+            view.update(await noteService.updateSortOrder());
         });
         this.btnClosePopUp.addEventListener('click', () => this.closeNewNotePopUp());
         this.newNoteForm.addEventListener('submit', (e) => e.preventDefault());

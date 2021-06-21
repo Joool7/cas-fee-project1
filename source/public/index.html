@@ -85,7 +85,10 @@
           </div>
           <label for="date" class="label-date">Zu erledigen bis</label>
           <input type="date"  name="date" id="date" class="new-note-date" required>
-          <button type="submit" class="btn btn-note-create">Speichern</button>
+          <div class="btn-note">
+            <button type="submit" class="btn btn-note-create">Speichern</button>
+            <button type="button" class="btn btn-note-delete invisible">Löschen</button>
+          </div>
         </form>
         <div class="close-pop-up">
           <button id="btn-close-pop-up" class="btn" data-btn-close-popup>Abbruch</button>
