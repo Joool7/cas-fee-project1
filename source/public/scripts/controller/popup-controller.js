@@ -34,25 +34,25 @@ class PopupController {
         }
     }
 
-    initNewNote() {
-        this.popUpTitle.innerText = 'Neue Notiz anlegen';
-        this.openedNoteId = '';
-        this.newNoteTitle.value = '';
-        this.newNoteDescription.value = '';
-        this.newNoteDate.value = '';
-        this.newNoteSelImportance = 1;
+    openNote(note){
+        if (note === undefined){
+            this.popUpTitle.innerText = 'Neue Notiz anlegen';
+            this.openedNoteId = '';
+            this.newNoteTitle.value = '';
+            this.newNoteDescription.value = '';
+            this.newNoteDate.value = '';
+            this.newNoteSelImportance = 1;
+        } else {
+            this.popUpTitle.innerText = 'Notiz bearbeiten';
+            this.openedNoteId = note._id;
+            this.newNoteTitle.value = note.title;
+            this.newNoteDescription.value = note.content;
+            this.createDate = new Date(note.createDate).toISOString().substring(0, 10);
+            this.newNoteDate.value = new Date(note.dueDate).toISOString().substring(0, 10);
+            this.newNoteSelImportance = note.importance;
+        }
         this.paintImportance(5, this.newNoteSelImportance);
-    }
-
-    openExistingNote(note) {
-        this.popUpTitle.innerText = 'Notiz bearbeiten';
-        this.openedNoteId = note._id;
-        this.newNoteTitle.value = note.title;
-        this.newNoteDescription.value = note.content;
-        this.createDate = new Date(note.createDate).toISOString().substring(0, 10);
-        this.newNoteDate.value = new Date(note.dueDate).toISOString().substring(0, 10);
-        this.newNoteSelImportance = note.importance;
-        this.paintImportance(5, this.newNoteSelImportance);
+        this.newNoteTitle.focus();
     }
 
     bubbleClickEventHandler(event) {
@@ -80,11 +80,12 @@ class PopupController {
                     tempNote.dueDate = this.newNoteDate.value;
                     await noteService.updateNote(this.openedNoteId, tempNote);
                 }
-                view.update(noteService.updateSortOrder());
                 this.closeNewNotePopUp();
+                view.update(await noteService.updateSortOrder());
             }
         });
         this.btnClosePopUp.addEventListener('click', () => this.closeNewNotePopUp());
+        this.newNoteForm.addEventListener('submit', (e) => e.preventDefault());
 
         // close window by click on container
         window.addEventListener(

@@ -1,4 +1,4 @@
-import { httpService } from './http-service.js';
+import {httpService} from './http-service.js';
 
 export class NoteServices {
     constructor() {
@@ -22,12 +22,23 @@ export class NoteServices {
         return httpService.ajax('PATCH', `/notes/${id}`, {note});
     }
 
+    setSortOrderFinish(){
+        this.sortOrder = 'sortFinish';
+    }
+
+    setSortOrderCreate(){
+        this.sortOrder = 'sortCreate';
+    }
+
+    setSortOrderImportance(){
+        this.sortOrder = 'sortImportance';
+    }
+
     updateSortOrder(){
         return this[this.sortOrder]();
     }
 
     async sortFinish() {
-        this.sortOrder = 'sortFinish';
         const notes = await this.getNotes();
         notes.sort((noteA, noteB) => {
             if (noteA.dueDate > noteB.dueDate){
@@ -42,7 +53,6 @@ export class NoteServices {
     }
 
     async sortCreate() {
-        this.sortOrder = 'sortCreate';
         const notes = await this.getNotes();
         notes.sort((noteA, noteB) => {
             if (noteA.createDate > noteB.createDate){
@@ -57,7 +67,6 @@ export class NoteServices {
     }
 
     async sortImportance() {
-        this.sortOrder = 'sortImportance';
         const notes = await this.getNotes();
         notes.sort((noteA, noteB) => {
             if (noteA.importance > noteB.importance){

@@ -7,13 +7,10 @@ class NotesController {
         this.selColorStyle = document.querySelector('[data-drop-style]');
         this.btnNewNote = document.querySelector('[data-btn-new-note]');
 
-        this.btnSortFinish = document.querySelector('[data-btn-sort-finish]');
-        this.btnSortCreate = document.querySelector('[data-btn-sort-create]');
-        this.btnSortImportance = document.querySelector('[data-btn-sort-importance]');
-        this.btnShowFinished = document.querySelector('[data-btn-toggle-finish]');
         this.popUpContainer = document.querySelector('.popup-container');
         this.body = document.body;
         this.sortButtons = document.querySelectorAll('.btn.sort');
+        this.noteHeaderButtons = document.querySelector('.note-header-buttons');
         this.notesClickListener = document.querySelector('.notes');
     }
 
@@ -21,22 +18,13 @@ class NotesController {
         this.body.classList.toggle('dark-mode');
     }
 
-    btnClearActive() {
+    btnToggleActive() {
         this.sortButtons.forEach((element) => element.classList.remove('btn-active'));
     }
 
-    openNotePopUp() {
+    openNotePopUp(note) {
         this.popUpContainer.style.display = 'flex';
-    }
-
-    openNewNotePopUp() {
-        this.openNotePopUp();
-        popupController.initNewNote();
-    }
-
-    openEditNotePopUp(note) {
-        this.openNotePopUp();
-        popupController.openExistingNote(note);
+        popupController.openNote(note);
     }
 
     async bubbleClickFinishNoteHandler(event) {
@@ -49,42 +37,47 @@ class NotesController {
                 tempNote.finished = false;
             }
             await noteService.updateNote(inputNoteId, tempNote);
+
             view.update(await noteService.updateSortOrder());
         } else if (event.target.type === 'button') {
             // edit Button
             const inputNoteId = event.target.dataset.noteBtnId;
             const tempNote = await noteService.getNote(inputNoteId);
-            await this.openEditNotePopUp(tempNote);
+            await this.openNotePopUp(tempNote);
+        }
+    }
+
+    async bubbleClickNoteHeaderButtonsHandler(event){
+        if ((event.target.classList.contains('sort')) || (event.target.classList.contains('filter'))){
+            if (event.target.classList.contains('finish')){
+                noteService.setSortOrderFinish();
+            }
+            if (event.target.classList.contains('create')){
+                noteService.setSortOrderCreate();
+            }
+            if (event.target.classList.contains('importance')){
+                noteService.setSortOrderImportance();
+            }
+            if (event.target.classList.contains('finished')){
+                noteService.toggleShowFinished(noteService);
+            }
+            const notes = await noteService.updateSortOrder();
+            event.target.classList.toggle('btn-active');
+            if (event.target.classList.contains('sort')){
+                this.btnToggleActive();
+                view.update(notes);
+            }
+            if (event.target.classList.contains('filter')){
+                view.update(await noteService.showFinished(notes));
+            }
         }
     }
 
     initEventHandlers(){
         this.selColorStyle.addEventListener('change', () => this.toggleColorStyle());
-        this.btnNewNote.addEventListener('click', () => this.openNewNotePopUp());
-
-        this.btnSortFinish.addEventListener('click', async () => {
-            const notes = await noteService.sortFinish();
-            view.update(notes);
-            this.btnClearActive();
-            this.btnSortFinish.classList.add('btn-active');
-        });
-        this.btnSortCreate.addEventListener('click', async () => {
-            const notes = await noteService.sortCreate();
-            view.update(notes);
-            this.btnClearActive();
-            this.btnSortCreate.classList.add('btn-active');
-        });
-        this.btnSortImportance.addEventListener('click', async () => {
-            const notes = await noteService.sortImportance();
-            view.update(notes);
-            this.btnClearActive();
-            this.btnSortImportance.classList.add('btn-active');
-        });
-        this.btnShowFinished.addEventListener('click', async () => {
-            noteService.toggleShowFinished(noteService);
-            const notes = await noteService.updateSortOrder();
-            view.update(await noteService.showFinished(notes));
-            this.btnShowFinished.classList.toggle('btn-active');
+        this.btnNewNote.addEventListener('click', () => this.openNotePopUp());
+        this.noteHeaderButtons.addEventListener('click', (event) =>{
+            this.bubbleClickNoteHeaderButtonsHandler(event);
         });
         this.notesClickListener.addEventListener('click', (event) => {
             this.bubbleClickFinishNoteHandler(event);

@@ -95,7 +95,7 @@ main {
     width: 100%;
 }
 
-.sort-buttons {
+.note-header-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -103,12 +103,12 @@ main {
     background: linear-gradient(to bottom right, rgba(var(--primary-color) 1), var(--primary-color));
 }
 
-.sort-buttons .btn {
+.note-header-buttons .btn {
     height: 2rem;
     width: 12rem;
 }
 
-.sort-buttons .btn:last-child {
+.note-header-buttons .btn:last-child {
     margin-left: 6rem;
     margin-right: 0;
 }
