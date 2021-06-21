@@ -98,6 +98,7 @@ main {
 .note-header-buttons {
     display: flex;
     flex-direction: row;
+    align-items: baseline;
     justify-content: space-around;
     margin: 1rem 0 0.5rem 0;
     background: linear-gradient(to bottom right, rgba(var(--primary-color) 1), var(--primary-color));
