@@ -62,11 +62,11 @@ class NotesController {
                 noteService.toggleShowFinished(noteService);
             }
             const notes = await noteService.updateSortOrder();
-            event.target.classList.toggle('btn-active');
             if (event.target.classList.contains('sort')){
                 this.btnToggleActive();
                 view.update(notes);
             }
+            event.target.classList.toggle('btn-active');
             if (event.target.classList.contains('filter')){
                 view.update(await noteService.showFinished(notes));
             }
